@@ -1,8 +1,8 @@
-//--------------------------------------------------------------------CREATING A DATABASE
+//CREATING A DATABASE
 
 CREATE DATABASE IMDB
 
-//-------------------------------------------------------------------CREATING A MOVIE TABLE
+//CREATING A MOVIE TABLE
 
 CREATE TABLE `Movies` (`ID` PRIMARY KEY, 
 `Title` VARCHAR(255),
@@ -12,7 +12,7 @@ CREATE TABLE `Movies` (`ID` PRIMARY KEY,
   )
 
 
-//-----------------------------------------------------------------INSERTING DATA INTO MOVIE TABLE
+//INSERTING DATA INTO MOVIE TABLE
 
 INSERT INTO `movietable` (`ID`, `Title`, `Director`, `Release Date`, `Productions`) VALUES ('1', 'Leo', 'Lokesh Kanagaraj', '19.10.2023', 'Seven Screen Studio');
 INSERT INTO `movietable` (`ID`, `Title`, `Director`, `Release Date`, `Productions`) VALUES ('2', 'Ponniyin Selvan', 'Maniratnam', '30.09.2022', 'LYCA Productions');
@@ -26,14 +26,14 @@ INSERT INTO `movietable` (`ID`, `Title`, `Director`, `Release Date`, `Production
 INSERT INTO `movietable` (`ID`, `Title`, `Director`, `Release Date`, `Productions`) VALUES ('10', 'Indru Netru Naalai', 'Ravikumar' '26.06.2015','Thirukumaran Entertainment and Studio Green');
 
 
-//---------------------------------------------------------------------CREATING GENRE TABLE
+//CREATING GENRE TABLE
 
 CREATE TABLE `Genre`(ID SERIAL PRIMARY KEY,
  Movie_ID INTEGER REFERENCES movietable(ID),
   Genre VARCHAR(255) );
 
 
-//-------------------------------------------------------------------INSERING DATA INTO GENRE TABLE
+//INSERING DATA INTO GENRE TABLE
 
 INSERT INTO `Genre`(`ID`,`Movie_ID`,`Genre`) VALUES('1','1', 'Action', 'Thriller');
 INSERT INTO `Genre`(`ID`,`Movie_ID`,`Genre`) VALUES('2','2','Fantasy','Historical');
@@ -47,12 +47,12 @@ INSERT INTO `Genre`(`ID`,`Movie_ID`,`Genre`) VALUES('9','9','Comedy','Action');
 INSERT INTO `Genre`(`ID`,`Movie_ID`,`Genre`) VALUES('10','10','Science Fiction','Romance');
 
 
-//------------------------------------------------------------------------CREATING MEDIA TABLE
+//CREATING MEDIA TABLE
 
 CREATE TABLE `Media_Table`( ID SERIAL PRIMARY KEY, Movie_ID INTEGER REFERENCES movies(ID), Type VARCHAR(255),URL VARCHAR(255));
 
 
-//---------------------------------------------------------------------INSERING DATA INTO MEDIA TABLE
+//INSERING DATA INTO MEDIA TABLE
 
 INSERT INTO `Media_Table`(ID,Movie_ID,Type,URL) VALUES('1','1','Image','https://i.ytimg.com/vi/qN3wfuPYTI4/maxresdefault.jpg');
 INSERT INTO `Media_Table`(ID,Movie_ID,Type,URL) VALUES('2','2','Video','https://youtu.be/EnhS3matIoU');
@@ -66,12 +66,12 @@ INSERT INTO `Media_Table`(ID,Movie_ID,Type,URL) VALUES('9','9','Image','https://
 INSERT INTO `Media_Table`(ID,Movie_ID,Type,URL) VALUES('10','10','Video','https://youtu.be/6YnVOsmfBQU');
 
 
-//---------------------------------------------------------------------------CREATING USER TABLE
+//CREATING USER TABLE
 
 CREATE TABLE `User_Table`(ID SERIAL PRIMARY KEY,USER VARCHAR(255));
 
 
-//------------------------------------------------------------------------INSERING DATA INTO USER TABLE
+//INSERING DATA INTO USER TABLE
 
 INSERT INTO `User_Table`(ID,UserName) VALUES('1','Lokesh Kanagaraj');
 INSERT INTO `User_Table`(ID,UserName) VALUES('2','Vetrimaaran');
@@ -90,12 +90,12 @@ INSERT INTO `User_Table`(ID,UserName) VALUES('15','Thiagarajan Kumararaja');
 
 
 
-//----------------------------------------------------------------------------CREATING REVIEW TABLE
+//CREATING REVIEW TABLE
 
 CREATE TABLE `Review`(ID SERIAL PRIMARY KEY,User_ID INTEGER(255) REFERENCES usertable(ID), Movie_ID INTEGER(255) REFERENCES movietable(ID),Rating INTEGER(255), Review VARCHAR(255));
 
 
-//-------------------------------------------------------------------------INSERING DATA INTO REVIEW TABLE
+//INSERING DATA INTO REVIEW TABLE
 
 INSERT INTO `Review`(ID,User_ID,Movie_ID,Rating,Review) VALUES('1','1','1','5','Waiting for witnessing the negative shade of THALAPATHY');
 INSERT INTO `Review`(ID,User_ID,Movie_ID,Rating,Review) VALUES('2','2','2','5','Pride of Tamil Industry');
@@ -119,12 +119,12 @@ INSERT INTO `Review`(ID,User_ID,Movie_ID,Rating,Review) VALUES('19','11','1','4'
 INSERT INTO `Review`(ID,User_ID,Movie_ID,Rating,Review) VALUES('20','10','10','4','Love and comedy worked out well for vishnu vishal, enjoyable one');
 
 
-//-------------------------------------------------------------------------------CREATING ARTIST TABLE
+//CREATING ARTIST TABLE
 
 CREATE TABLE `Artist_Table`(ID SERIAL PRIMARY KEY,NAME VARCHAR(255),SKILLS VARCHAR(255));
 
 
-//---------------------------------------------------------------------------INSERING DATA INTO ARTIST TABLE
+//INSERING DATA INTO ARTIST TABLE
 
 INSERT INTO `artist_table`(ID,Name) VALUES('1','Vijay');
 INSERT INTO `artist_table`(ID,Name) VALUES('2','Ajith');
@@ -135,12 +135,12 @@ INSERT INTO `artist_table`(ID,Name) VALUES('6','Siva Karthikeyan');
 INSERT INTO `artist_table`(ID,Name) VALUES('7','Vijay Sethupathi');
 
 
-//-------------------------------------------------------------------------------CREATING SKILLS TABLE
+//CREATING SKILLS TABLE
 
 CREATE TABLE `Skills_Table`(ID SERIAL PRIMARY KEY,Artist_ID INTEGER(255) REFERENCES artisttable(ID),SKILLS VARCHAR(255))
 
 
-//----------------------------------------------------------------------------INSERING DATA INTO SKILLS TABLE
+//INSERING DATA INTO SKILLS TABLE
 
 INSERT INTO `skills_table`(ID,Artist_ID,Skills) VALUES('1','1','Acting,Dancing,Stunt,Singing');
 INSERT INTO `skills_table`(ID,Artist_ID,Skills) VALUES('5','2','Acting,Stunt');
@@ -150,12 +150,12 @@ INSERT INTO `skills_table`(ID,Artist_ID,Skills) VALUES('12','5','Dancing,Singing
 INSERT INTO `skills_table`(ID,Artist_ID,Skills) VALUES('15','6','Dancing,Singing,Acting,Lyricist');
 INSERT INTO `skills_table`(ID,Artist_ID,Skills) VALUES('18','7','Acting,Singing');
 
-//-------------------------------------------------------------------------------CREATING ROLES TABLE
+//CREATING ROLES TABLE
 
 CREATE TABLE `Roles`(ID SERIAL PRIMARY KEY,Artist_ID INTEGER(255) REFERENCES artisttable(ID), Movie_ID INTEGER(255) REFERENCES movietable(ID),Roles VARCHAR(255));
 
 
-//----------------------------------------------------------------------------INSERING DATA INTO ROLES TABLE
+//INSERING DATA INTO ROLES TABLE
 
 INSERT INTO `Roles`(ID,Artist_ID,Movie_ID,Roles) VALUES('1','1','1','Leo');
 INSERT INTO `Roles`(ID,Artist_ID,Movie_ID,Roles) VALUES('2','1','7','JD');
